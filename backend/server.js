@@ -16,6 +16,9 @@ const storage = multer.diskStorage({
 });
 const upload = multer({ storage });
 
+// Serve static files from the 'uploads' directory
+app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
+
 // Handle file upload route
 app.post('/upload', upload.single('file'), (req, res) => {
   if (!req.file) {
@@ -24,6 +27,7 @@ app.post('/upload', upload.single('file'), (req, res) => {
   res.send('File uploaded successfully.');
 });
 
+// Start the server
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
 });

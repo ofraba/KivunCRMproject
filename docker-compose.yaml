@@ -1,22 +1,22 @@
 version: '3'
 services:
   backend:
-    image: node-backend
+    image: backend
     build:
-      context: .
+      context: ./backend
       dockerfile: Dockerfile
     ports:
       - "5000:5000"
     volumes:
-      - ./server:/app/server
+      - ./backend:/app/backend
     environment:
       - PORT=5000
     depends_on:
       - frontend
   frontend:
-    image: react-frontend
+    image: frontend
     build:
-      context: ./client
+      context: ./frontend
       dockerfile: Dockerfile
     ports:
       - "80:80"
